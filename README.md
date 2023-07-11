@@ -37,6 +37,14 @@ The main interface of KinskiGPT comprises a chat window and a text input field. 
 
 The model has a pre-loaded system prompt that introduces the persona of Kinski and encourages the user to engage with the bot in a manner that stimulates the 'Klaus Kinski' responses.
 
+## Examples
+
+### English
+![Example english](image.png)
+
+### German
+![Example german](image2.png)
+
 ## Limitations
 
 As of the current build, the chat history is not saved when the session ends or when the server is stopped. Any ongoing chat history will be lost when the page is refreshed.
