@@ -11,7 +11,7 @@ This Python script is a web application that makes use of the Streamlit library 
 1. Install the required Python packages if you haven't done so. This can be done by running the following command in the project's root directory:
 
 ```bash
-pip install openai streamlit python-dotenv
+pip install -r requirements.txt
 ```
 
 2. Clone this repository to your local machine.
