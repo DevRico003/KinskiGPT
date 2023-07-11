@@ -37,7 +37,7 @@ pip install -r requirements.txt
 To start the application, run the Python script with Streamlit. From the project's root directory, enter the following command:
 
 ```bash
-streamlit run kinskigpt.py
+streamlit run main.py
 ```
 
 This command will start a local server, and you can interact with the KinskiGPT in your web browser. 
