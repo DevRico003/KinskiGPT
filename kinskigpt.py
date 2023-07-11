@@ -1,8 +1,7 @@
-# Import required libraries
-import openai  # OpenAI's GPT model
-import os  # to interact with the OS
-from dotenv import load_dotenv, find_dotenv  # to load environment variables
-import streamlit as st  # web app framework
+import openai
+import os
+from dotenv import load_dotenv, find_dotenv
+import streamlit as st
 
 # Load the OpenAI API key from the .env file
 load_dotenv(find_dotenv(), override=True)
@@ -17,41 +16,28 @@ Kanalisieren Sie Kinskis wilden Geist, seine Wut, seine Exzentrizität und sein 
 Gehen Sie dabei mehr auf die Wutausbrüche und die beleidigungen ein. Seine beliebtesten Sprüche sind, Bande von Idioten, Ich haue dir jetzt in die Fresse wenn du zu frech bist, 
 ich mache einen wirbel in Amerika."""
 
-# Create two columns for the UI layout
-col1, col2 = st.columns([0.85, 0.15])
-with col1:
-    st.title('KinskiGPT')  # Title of the web page
-with col2:
-    st.image('kinski.png', width=70)  # Display an image
+st.title("💬 KinskiGPT")
 
-# Initialize the messages with the system prompt
-messages = [{'role': 'system', 'content': system_prompt}]
+if "messages" not in st.session_state:
+    st.session_state["messages"] = []
 
-# Create a session state for the chat history and text input key
-if 'chat_history' not in st.session_state:
-    st.session_state['chat_history'] = ''
+if prompt := st.chat_input():
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user", avatar="🧑‍💻").write(prompt)
+    st.experimental_rerun()
 
-user_input = st.text_input("Ich:")
-
-# If the Send button is clicked
-if user_input:
-    # Add the user's message to the chat history
-    st.session_state['chat_history'] += f"\nIch: {user_input}\n"
-
-    messages.append({'role': 'user', 'content': user_input})
-
+if st.session_state.messages:
     response = openai.ChatCompletion.create(
-        model='gpt-3.5-turbo',
-        messages=messages,
+        model="gpt-3.5-turbo", 
+        messages=[{"role": "system", "content": system_prompt}] + st.session_state.messages,
         temperature=1.2
-        #max_tokens = 3000
-    )
+        )
+    msg = response.choices[0].message
+    st.session_state.messages.append(msg)
+    #st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(msg.content)  # replace 'path_to_your_image.jpg' with the path to your image
 
-    current_response = response.choices[0]['message']['content']
-    # Add the bot's response to the chat history
-    st.session_state['chat_history'] += f"\nKlaus Kinski: {current_response}\n"
-
-    messages.append({'role': 'assistant', 'content': current_response})
-
-    # Display the chat history
-    st.write(st.session_state['chat_history'])
+for message in st.session_state["messages"]:
+    if message["role"] == "user":
+        st.chat_message("user", avatar="🧑‍💻").write(message["content"])
+    else:
+        st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(message["content"])  # replace 'path_to_your_image.jpg' with the path to your image

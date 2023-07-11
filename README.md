@@ -6,6 +6,17 @@ KinskiGPT is an application utilizing OpenAI's GPT model to simulate a chat with
 
 This Python script is a web application that makes use of the Streamlit library for user interface and the OpenAI API for conversation generation. The OpenAI API key is securely loaded from an environment file. 
 
+## Dependencies
+
+The main libraries and packages used in this project are:
+
+- `openai` for interaction with OpenAI's GPT-3 model
+- `os` for environment variable management
+- `dotenv` for .env file handling
+- `streamlit` for web application framework
+
+Please ensure that these packages are installed in your environment before running the application.
+
 ## Installation
 
 1. Install the required Python packages if you haven't done so. This can be done by running the following command in the project's root directory:
