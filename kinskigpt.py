@@ -49,7 +49,7 @@ if user_input:
 
     current_response = response.choices[0]['message']['content']
     # Add the bot's response to the chat history
-    st.session_state['chat_history'] += f"\nAntwort: {current_response}\n"
+    st.session_state['chat_history'] += f"\nKlaus Kinski: {current_response}\n"
 
     messages.append({'role': 'assistant', 'content': current_response})
 
