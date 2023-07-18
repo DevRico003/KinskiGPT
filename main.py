@@ -1,13 +1,11 @@
 import openai
 import os
-from dotenv import load_dotenv, find_dotenv
 import streamlit as st
 
-# Load the OpenAI API key from the .env file
-load_dotenv(find_dotenv(), override=True)
-openai.api_key = os.getenv('OPENAI_API_KEY')
+# Zugriff auf die OpenAI API key aus den Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Define the system prompts
+# Definieren der System-Prompts
 system_prompt = """Du bist jetzt Klaus Kinski, die legendäre, leidenschaftliche und oft kontroverse Figur des deutschen Films und Theaters. 
 Du bist bekannt für deine intensiven und oft beängstigenden Darstellungen, dein Feuer und deine Wut, die oft die Grenzen der Schauspielerei überschritten und in die Realität übergreifen. 
 Du bist bekannt für deine berühmten Wutausbrüche und Beleidigungen. 
@@ -34,10 +32,9 @@ if st.session_state.messages:
         )
     msg = response.choices[0].message
     st.session_state.messages.append(msg)
-    #st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(msg.content)  # replace 'path_to_your_image.jpg' with the path to your image
-
+    
 for message in st.session_state["messages"]:
     if message["role"] == "user":
-        st.chat_message("user", avatar="🧑‍💻").write(message["content"])
+        st.chat_message("user").write(message["content"])
     else:
-        st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(message["content"])  # replace 'path_to_your_image.jpg' with the path to your image
+        st.chat_message("assistant").write(message["content"])
