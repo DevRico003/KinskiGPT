@@ -19,22 +19,27 @@ Please ensure that these packages are installed in your environment before runni
 
 ## Installation
 
-1. Install the required Python packages if you haven't done so. This can be done by running the following command in the project's root directory:
-
+1. clone repo:
+```bash
+git clone https://github.com/DevRico003/KinskiGPT.git
+```
+2. go into the cloned directory:
+```bash
+cd KinskiGPT
+```
+3. install requirements:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Clone this repository to your local machine.
-
-3. Create a `.env` file in the root directory of the project. Inside this file, set the following variable:
+4. Create a `.env` file in the root directory of the project (inside KinskiGPT folder). Inside this file, set the following variable:
    ```bash
    OPENAI_API_KEY=<Your_OpenAI_API_Key>
    ```
 
 ## Usage
 
-To start the application, run the Python script with Streamlit. From the project's root directory, enter the following command:
+To start the application, run the Python script with Streamlit. From the project's root directory (inside KinskiGPT folder), enter the following command:
 
 ```bash
 streamlit run main.py
