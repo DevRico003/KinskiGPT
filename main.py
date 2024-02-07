@@ -34,10 +34,9 @@ if st.session_state.messages:
         )
     msg = response.choices[0].message
     st.session_state.messages.append(msg)
-    #st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(msg.content)  # replace 'path_to_your_image.jpg' with the path to your image
 
 for message in st.session_state["messages"]:
     if message["role"] == "user":
         st.chat_message("user", avatar="🧑‍💻").write(message["content"])
     else:
-        st.chat_message("assistant", avatar="/home/ec2-user/kinski.png").write(message["content"])  # replace 'path_to_your_image.jpg' with the path to your image
+        st.chat_message("assistant").write(message["content"]) 
